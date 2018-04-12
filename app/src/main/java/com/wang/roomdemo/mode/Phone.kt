@@ -9,10 +9,10 @@ import android.arch.persistence.room.*
 @Entity(
         foreignKeys = [
             ForeignKey(entity = User::class, parentColumns = ["id"], childColumns = ["user_id"], onDelete = ForeignKey.SET_DEFAULT)
-        ]/*,
+        ],
         indices = [
             Index("user_id")
-        ]*/)
+        ])
 class Phone {
 
     @PrimaryKey
