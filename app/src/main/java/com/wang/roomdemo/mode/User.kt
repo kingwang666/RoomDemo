@@ -14,8 +14,8 @@ class User {
 
     @PrimaryKey
     @JvmField
-//    @ColumnInfo(name = "user_id")
-    var id: Int = 0
+    @ColumnInfo(name = "user_id")
+    var userId: Int = 0
 
     @ColumnInfo(name = "first_name")
     @JvmField
@@ -37,7 +37,7 @@ class User {
     var liveAddr: Address? = null
 
     override fun toString(): String {
-        return "User(id=$id, firstName='$firstName', lastName='$lastName', age=$age, accountAddr=$accountAddr, liveAddr=$liveAddr)"
+        return "User(userId=$userId, firstName='$firstName', lastName='$lastName', age=$age, accountAddr=$accountAddr, liveAddr=$liveAddr)"
     }
 
 

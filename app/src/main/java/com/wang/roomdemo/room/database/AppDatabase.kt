@@ -14,7 +14,7 @@ import com.wang.roomdemo.room.dao.PhoneDao
  * Author: wangxiaojie6
  * Date: 2018/4/4
  */
-@Database(entities = [User::class, Phone::class], version = 2)
+@Database(entities = [User::class, Phone::class], version = 3)
 abstract class AppDatabase : RoomDatabase() {
 
 //    companion object {

@@ -19,10 +19,10 @@ interface UserDao {
     @Query("SELECT * FROM users")
     fun getAll(): List<User>
 
-    @Query("SELECT * FROM users WHERE id IN (:ids)")
+    @Query("SELECT * FROM users WHERE user_id IN (:ids)")
     fun getUsersByIds(ids: IntArray): List<User>
 
-    @Query("SELECT * FROM users WHERE id LIKE :id")
+    @Query("SELECT * FROM users WHERE user_id LIKE :id")
     fun getUserById(id: Int): User?
 
     @Query("SELECT * FROM users WHERE first_name LIKE :first AND last_name LIKE :last LIMIT 1")
@@ -37,7 +37,7 @@ interface UserDao {
     @Query("SELECT first_name, last_name FROM users")
     fun getName(): List<NameTuple>
 
-    @Query("SELECT users.first_name AS firstName, users.last_name AS lastName, Phone.phone From users, Phone WHERE users.id = Phone.user_id")
+    @Query("SELECT users.first_name AS firstName, users.last_name AS lastName, Phone.phone From users, Phone WHERE users.user_id = Phone.user_id")
     fun getNameAndPhone(): List<UserPhone>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

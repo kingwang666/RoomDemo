@@ -21,7 +21,7 @@ class MainActivityPresenter {
 
     fun add(id: Int = 0, firstName: String = "wang", lastName: String = "xiaojie", age: Int = 18): Disposable {
         val user = User().apply {
-            this.id = id
+            this.userId = id
             this.firstName = firstName
             this.lastName = lastName
             this.age = age
@@ -44,7 +44,7 @@ class MainActivityPresenter {
 
     fun deleteUser(id: Int = 0): Disposable {
         val user = User().apply {
-            this.id = id
+            this.userId = id
         }
         return mRepository.delete(user, object : WSubscriber<Boolean>() {
             override fun success(t: Boolean) {
@@ -73,7 +73,7 @@ class MainActivityPresenter {
 
     fun addPhone(id: Int = 0, userId: Int? = null, phoneNumber: String = "15757126090"): Disposable {
         val phone = Phone().apply {
-            this.id = id
+            this.phoneId = id
             this.phone = phoneNumber
             this.userId = userId
         }
