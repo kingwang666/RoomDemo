@@ -17,7 +17,7 @@ class Phone {
 
     @PrimaryKey
     @JvmField
-    @ColumnInfo(name = "id")
+//    @ColumnInfo(name = "id")
     var id: Int = 0
 
     @JvmField
@@ -28,7 +28,7 @@ class Phone {
     var userId: Int? = null
 
     override fun toString(): String {
-        return "Phone(phoneId=$id, phone='$phone', userId=$userId)"
+        return "Phone(id=$id, phone='$phone', userId=$userId)"
     }
 
 

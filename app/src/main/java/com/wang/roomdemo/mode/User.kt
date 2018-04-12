@@ -37,7 +37,7 @@ class User {
     var liveAddr: Address? = null
 
     override fun toString(): String {
-        return "User(userId=$id, firstName='$firstName', lastName='$lastName', age=$age, accountAddr=$accountAddr, liveAddr=$liveAddr)"
+        return "User(id=$id, firstName='$firstName', lastName='$lastName', age=$age, accountAddr=$accountAddr, liveAddr=$liveAddr)"
     }
 
 
