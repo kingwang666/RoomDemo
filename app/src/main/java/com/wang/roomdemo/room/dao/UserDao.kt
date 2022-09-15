@@ -1,10 +1,9 @@
 package com.wang.roomdemo.room.dao
 
-import android.arch.persistence.room.*
+import androidx.room.*
 import com.wang.roomdemo.mode.NameTuple
 import com.wang.roomdemo.mode.User
 import com.wang.roomdemo.mode.UserPhone
-import io.reactivex.Flowable
 
 
 /**

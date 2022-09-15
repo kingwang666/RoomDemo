@@ -1,12 +1,13 @@
 package com.wang.roomdemo.room.database
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.Room
+import androidx.room.Database
+import androidx.room.Room
 import com.wang.roomdemo.mode.User
 import com.wang.roomdemo.room.dao.UserDao
-import android.arch.persistence.room.RoomDatabase
+import androidx.room.RoomDatabase
 import android.content.Context
 import com.wang.roomdemo.mode.Phone
+import com.wang.roomdemo.mode.PhoneFts
 import com.wang.roomdemo.room.dao.PhoneDao
 
 
@@ -14,7 +15,7 @@ import com.wang.roomdemo.room.dao.PhoneDao
  * Author: wangxiaojie6
  * Date: 2018/4/4
  */
-@Database(entities = [User::class, Phone::class], version = 3)
+@Database(entities = [User::class, Phone::class, PhoneFts::class], version = 4)
 abstract class AppDatabase : RoomDatabase() {
 
 //    companion object {

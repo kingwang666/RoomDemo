@@ -2,8 +2,9 @@ package com.wang.roomdemo
 
 import android.content.Context
 import android.util.Log
+import androidx.room.Query
 import com.wang.roomdemo.mode.*
-import io.reactivex.disposables.Disposable
+import io.reactivex.rxjava3.disposables.Disposable
 
 /**
  * Author: wangxiaojie6
@@ -19,7 +20,12 @@ class MainActivityPresenter {
         mView = view
     }
 
-    fun add(id: Int = 0, firstName: String = "wang", lastName: String = "xiaojie", age: Int = 18): Disposable {
+    fun add(
+        id: Int = 0,
+        firstName: String = "wang",
+        lastName: String = "xiaojie",
+        age: Int = 18
+    ): Disposable {
         val user = User().apply {
             this.userId = id
             this.firstName = firstName
@@ -36,7 +42,7 @@ class MainActivityPresenter {
             }
 
             override fun error(error: String?) {
-                Log.e("test", error)
+                Log.e("test", "$error")
             }
 
         })
@@ -52,7 +58,7 @@ class MainActivityPresenter {
             }
 
             override fun error(error: String?) {
-                Log.e("test", error)
+                Log.e("test", "$error")
             }
 
         })
@@ -71,7 +77,11 @@ class MainActivityPresenter {
         })
     }
 
-    fun addPhone(id: Int = 0, userId: Int? = null, phoneNumber: String = "15757126090"): Disposable {
+    fun addPhone(
+        id: Int = 0,
+        userId: Int? = null,
+        phoneNumber: String = "15757126090"
+    ): Disposable {
         val phone = Phone().apply {
             this.phoneId = id
             this.phone = phoneNumber
@@ -83,7 +93,7 @@ class MainActivityPresenter {
             }
 
             override fun error(error: String?) {
-                Log.e("test", error)
+                Log.e("test", "$error")
             }
 
         })
@@ -165,6 +175,33 @@ class MainActivityPresenter {
             }
         })
     }
+
+    fun searchPhone(query: String): Disposable {
+        return mRepository.searchPhone(query, object : WSubscriber<List<PhoneFts>>() {
+            override fun success(t: List<PhoneFts>) {
+                Log.d("test", t.toString())
+            }
+
+            override fun error(error: String?) {
+                Log.e("test", error ?: "")
+            }
+
+        })
+    }
+
+    fun searchPhone2(query: String): Disposable {
+        return mRepository.searchPhone2(query, object : WSubscriber<List<Phone>>() {
+            override fun success(t: List<Phone>) {
+                Log.d("test", t.toString())
+            }
+
+            override fun error(error: String?) {
+                Log.e("test", error ?: "")
+            }
+
+        })
+    }
+
 
     fun getNameAndPhone(): Disposable {
         return mRepository.getNameAndPhone(object : WSubscriber<List<UserPhone>>() {

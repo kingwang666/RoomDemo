@@ -1,11 +1,11 @@
 package com.wang.roomdemo.room.database
 
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Rule
 import org.junit.runner.RunWith
-import android.arch.persistence.db.framework.FrameworkSQLiteOpenHelperFactory
-import android.support.test.InstrumentationRegistry
-import android.arch.persistence.room.testing.MigrationTestHelper
+import androidx.sqlite.db.framework.FrameworkSQLiteOpenHelperFactory
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.room.testing.MigrationTestHelper
 import com.wang.roomdemo.room.database.RoomRepository.Companion.MIGRATION_1_2
 import org.junit.Test
 import java.io.IOException
@@ -26,7 +26,8 @@ class MigrationTest {
 
     @Rule
     @JvmField
-    val helper: MigrationTestHelper = MigrationTestHelper(InstrumentationRegistry.getInstrumentation(),
+    val helper: MigrationTestHelper = MigrationTestHelper(
+        InstrumentationRegistry.getInstrumentation(),
             AppDatabase::class.java.canonicalName,
             FrameworkSQLiteOpenHelperFactory())
 

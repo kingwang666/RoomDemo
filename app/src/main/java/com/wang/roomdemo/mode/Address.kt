@@ -1,6 +1,6 @@
 package com.wang.roomdemo.mode
 
-import android.arch.persistence.room.ColumnInfo
+import androidx.room.ColumnInfo
 
 
 /**

@@ -1,7 +1,7 @@
 package com.wang.roomdemo
 
 import android.util.Log
-import io.reactivex.subscribers.DisposableSubscriber
+import io.reactivex.rxjava3.subscribers.DisposableSubscriber
 
 /**
  * Author: wangxiaojie6

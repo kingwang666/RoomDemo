@@ -1,8 +1,8 @@
 package com.wang.roomdemo.room.database
 
-import android.arch.persistence.db.SupportSQLiteDatabase
-import android.arch.persistence.room.migration.Migration
-import android.support.annotation.VisibleForTesting
+import androidx.sqlite.db.SupportSQLiteDatabase
+import androidx.room.migration.Migration
+import androidx.annotation.VisibleForTesting
 
 /**
  * Author: wangxiaojie6
@@ -12,6 +12,7 @@ abstract class RoomRepository {
 
     companion object {
 
+        @JvmField
         internal val MIGRATION_1_2: Migration = object : Migration(1, 2) {
 
             override fun migrate(database: SupportSQLiteDatabase) {
@@ -19,6 +20,7 @@ abstract class RoomRepository {
             }
         }
 
+        @JvmField
         internal val MIGRATION_2_3: Migration = object : Migration(2, 3){
 
             override fun migrate(database: SupportSQLiteDatabase) {
@@ -46,6 +48,17 @@ abstract class RoomRepository {
             }
 
         }
+
+        @JvmField
+        internal val MIGRATION_3_4: Migration = object : Migration(3, 4) {
+
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("CREATE VIRTUAL TABLE IF NOT EXISTS `phone_fts` USING FTS4(`phone` TEXT NOT NULL, content=`Phone`)")
+                database.execSQL("INSERT INTO phone_fts(phone_fts) VALUES('rebuild')")
+            }
+        }
+
+
     }
 
 

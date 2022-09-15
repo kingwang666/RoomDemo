@@ -1,6 +1,6 @@
 package com.wang.roomdemo.mode
 
-import android.arch.persistence.room.*
+import androidx.room.*
 
 /**
  * Author: wangxiaojie6
@@ -8,7 +8,7 @@ import android.arch.persistence.room.*
  */
 @Entity(
         foreignKeys = [
-            ForeignKey(entity = User::class, parentColumns = ["user_id"], childColumns = ["user_id"], onDelete = ForeignKey.SET_DEFAULT)
+            ForeignKey(entity = User::class, parentColumns = ["user_id"], childColumns = ["user_id"], onDelete = ForeignKey.CASCADE)
         ],
         indices = [
             Index("user_id")

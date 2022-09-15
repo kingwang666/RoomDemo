@@ -1,7 +1,8 @@
 package com.wang.roomdemo.room.dao
 
-import android.arch.persistence.room.*
+import androidx.room.*
 import com.wang.roomdemo.mode.Phone
+import com.wang.roomdemo.mode.PhoneFts
 
 /**
  * Author: wangxiaojie6
@@ -27,6 +28,12 @@ interface PhoneDao {
 
     @Query("SELECT Phone.phone_id, Phone.phone, Phone.user_id FROM Phone INNER JOIN users ON Phone.user_id = users.user_id WHERE users.last_name LIKE :lastName AND users.first_name LIKE :firstName")
     fun getPhoneByUserName(firstName: String, lastName: String): List<Phone>
+
+    @Query("SELECT * FROM phone_fts WHERE phone_fts MATCH :query")
+    fun search(query: String): List<PhoneFts>
+
+    @Query("SELECT * FROM phone INNER JOIN phone_fts ON (Phone.phone_id = phone_fts.docid) WHERE phone_fts MATCH :query")
+    fun search2(query: String): List<Phone>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg phones: Phone)

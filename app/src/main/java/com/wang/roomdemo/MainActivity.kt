@@ -1,8 +1,9 @@
 package com.wang.roomdemo
 
 import android.graphics.Matrix
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import com.wang.roomdemo.mode.User
 import java.util.*
@@ -22,13 +23,24 @@ class MainActivity : AppCompatActivity(), MainActivityPresenter.IView {
 //        mPresenter.add(10, firstName = "hu", lastName = "qiuye", age = 18)
 //        mPresenter.add(8, firstName = "zhang", lastName = "san", age = 3)
 //        mPresenter.add(99, firstName = "test", lastName = "99")
-//
-//        mPresenter.addPhone(1, 40)
-//        mPresenter.addPhone(3, 40, "16868682828")
-//        mPresenter.addPhone(2, 38, "13819411655")
-//        mPresenter.addPhone(4, null, "13838385438")
-//        mPresenter.addPhone(5, 99, "16888686686")
-//
+
+        Handler().postDelayed(Runnable {
+//            mPresenter.addPhone(1, 40)
+//            mPresenter.addPhone(2, 38, "13819411655")
+//            mPresenter.addPhone(3, 40, "16868682828")
+//            mPresenter.addPhone(4, 99, "16888686686")
+
+            mPresenter.addPhone(8, 25, "16688886666")
+
+            Handler().postDelayed(Runnable {
+                mPresenter.searchPhone("16")
+                mPresenter.searchPhone2("16")
+            }, 1000)
+
+
+        }, 1000)
+
+
 //        mPresenter.getAll()
 //        mPresenter.getAllPhone()
 
@@ -37,17 +49,7 @@ class MainActivity : AppCompatActivity(), MainActivityPresenter.IView {
 //        mPresenter.getAllPhone()
 //        mPresenter.getNoOwnerPhone()
 //        mPresenter.getPhoneByName("wang", "xiaojie")
-        val values = FloatArray(9)
-        val matrix = Matrix()
-/*        matrix.getValues(values)
-        Log.d("test", Arrays.toString(values))*/
-        matrix.postRotate(35f)
-//        matrix.getValues(values)
-//        Log.d("test", Arrays.toString(values))
-        matrix.postScale(3f, 2f)
-        matrix.postRotate(-180f)
-        matrix.getValues(values)
-        Log.d("test", Arrays.toString(values) + " " + MatrixUtil.getDegrees(values))
+
 
     }
 

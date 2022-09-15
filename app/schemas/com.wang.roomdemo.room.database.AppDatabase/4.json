@@ -1,8 +1,8 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 3,
-    "identityHash": "dfdb90116693dfc0e11b6fe21052d00f",
+    "version": 4,
+    "identityHash": "718c955ae8684ea6f2db9317ecd740fa",
     "entities": [
       {
         "tableName": "users",
@@ -131,12 +131,47 @@
             ]
           }
         ]
+      },
+      {
+        "ftsVersion": "FTS4",
+        "ftsOptions": {
+          "tokenizer": "simple",
+          "tokenizerArgs": [],
+          "contentTable": "Phone",
+          "languageIdColumnName": "",
+          "matchInfo": "FTS4",
+          "notIndexedColumns": [],
+          "prefixSizes": [],
+          "preferredOrder": "ASC"
+        },
+        "contentSyncTriggers": [
+          "CREATE TRIGGER IF NOT EXISTS room_fts_content_sync_phone_fts_BEFORE_UPDATE BEFORE UPDATE ON `Phone` BEGIN DELETE FROM `phone_fts` WHERE `docid`=OLD.`rowid`; END",
+          "CREATE TRIGGER IF NOT EXISTS room_fts_content_sync_phone_fts_BEFORE_DELETE BEFORE DELETE ON `Phone` BEGIN DELETE FROM `phone_fts` WHERE `docid`=OLD.`rowid`; END",
+          "CREATE TRIGGER IF NOT EXISTS room_fts_content_sync_phone_fts_AFTER_UPDATE AFTER UPDATE ON `Phone` BEGIN INSERT INTO `phone_fts`(`docid`, `phone`) VALUES (NEW.`rowid`, NEW.`phone`); END",
+          "CREATE TRIGGER IF NOT EXISTS room_fts_content_sync_phone_fts_AFTER_INSERT AFTER INSERT ON `Phone` BEGIN INSERT INTO `phone_fts`(`docid`, `phone`) VALUES (NEW.`rowid`, NEW.`phone`); END"
+        ],
+        "tableName": "phone_fts",
+        "createSql": "CREATE VIRTUAL TABLE IF NOT EXISTS `${TABLE_NAME}` USING FTS4(`phone` TEXT NOT NULL, content=`Phone`)",
+        "fields": [
+          {
+            "fieldPath": "phone",
+            "columnName": "phone",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'dfdb90116693dfc0e11b6fe21052d00f')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '718c955ae8684ea6f2db9317ecd740fa')"
     ]
   }
 }
